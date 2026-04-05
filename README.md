@@ -5,7 +5,7 @@ Galaxy Wars est un jeu d'arcade realise avec p5.js, base sur les steering behavi
 ## Lien de test et demo
 
 - Jeu jouable en ligne: https://matheobalazuc.github.io/galaxy-wars-game/
-- Une video de demonstration du gameplay est egalement disponible avec le projet.
+- Une video de demonstration du gameplay est egalement disponible avec le projet: [DEMO_GalaxyWarsGame.mp4](DEMO_GalaxyWarsGame.mp4)
 
 ## Fonctionnalites principales
 
