@@ -52,9 +52,9 @@ Galaxy Wars est un jeu d'arcade realise avec p5.js, base sur les steering behavi
 
 ## Mon expérience
 
-J'ai choisi de faire ce jeu parce que je voulais aller au-dela d'un simple deplacement script et travailler une vraie sensation d'agents "vivants" avec les steering behaviors. Le format arcade m'a permis de tester rapidement les comportements, tout en gardant un objectif de gameplay clair: survivre, gerer ses ressources et prioriser ses actions.
+J'ai choisi de faire ce jeu parce que le format arcade m'a permis de tester rapidement les comportements, tout en gardant un objectif de gameplay assez simple.
 
-Les comportements que j'ai privilegies sont `seek`, `arrive`, `wander`, `avoidObstacles`, `separation` et `stayInBounds`. Ce choix m'a semble le plus pertinent pour obtenir un mouvement lisible mais dynamique: les ennemis poursuivent le joueur sans se coller entre eux, evitent les obstacles, et restent dans l'espace jouable.
+Les comportements que j'ai privilegies sont `seek`, `arrive`, `wander`, `avoidObstacles`. Ce choix m'a semble le plus pertinent pour obtenir un mouvement lisible mais dynamique, les ennemis poursuivent le joueur sans se coller entre eux, evitent les obstacles, et restent dans l'espace jouable.
 
 Pour le reglage, j'ai travaille par iterations courtes avec les sliders live. J'ai ajuste les poids des forces, les vitesses ennemies, les rayons de detection et les limites de spawn jusqu'a obtenir un equilibre entre challenge et jouabilite. Le fait de pouvoir modifier les parametres en direct a vraiment aide a affiner la difficulte sans casser le rythme de test.
 
