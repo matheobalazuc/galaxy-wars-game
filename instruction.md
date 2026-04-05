@@ -1,7 +1,7 @@
 # Galaxy Wars - Cahier de specifications
 
 ## 1. Objectif
-Ce document definit les contraintes et specifications pour permettre a une IA (UNIA) de recreer le projet exactement dans son etat actuel.
+Ce document definit les contraintes et specifications.
 
 Le titre visible du jeu est Galaxy Wars.
 Le projet repose sur p5.js, une architecture POO, et les steering behaviors.
