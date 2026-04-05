@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Galaxy Wars</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
+  </head>
+  <body>
+    <div id="ui-root">
+      <button id="pause-in-game-btn" class="floating-settings-btn floating-pause-btn" aria-label="Pause">⏸</button>
+      <button id="toggle-sliders-btn" class="floating-settings-btn floating-sliders-btn" aria-label="Masquer curseurs">🎚</button>
+      <section id="live-controls" class="panel live-controls">
+        <h3>Réglages live</h3>
+        <div class="slider-mini">
+          <label>Vitesse ennemis <span id="live-enemy-speed-val">2.5</span></label>
+          <input id="live-enemy-speed" type="range" min="0.5" max="8" step="0.1" value="2.5" />
+        </div>
+        <div class="slider-mini">
+          <label>Détection <span id="live-detect-radius-val">150</span></label>
+          <input id="live-detect-radius" type="range" min="40" max="500" step="5" value="150" />
+        </div>
+        <div class="slider-mini">
+          <label>Obstacles <span id="live-obstacle-count-val">8</span></label>
+          <input id="live-obstacle-count" type="range" min="0" max="20" step="1" value="8" />
+        </div>
+      </section>
+
+      <!-- Menu Screen -->
+      <section id="menu-screen" class="panel visible">
+        <h1>Galaxy Wars</h1>
+        <div id="menu-levels" class="level-grid"></div>
+        <label class="debug-toggle">
+          <input type="checkbox" id="debug-toggle" />
+          Mode Debug (D en jeu)
+        </label>
+      </section>
+
+      <section id="intro-screen" class="panel">
+        <h2 id="intro-title">Niveau</h2>
+        <p id="intro-body"></p>
+        <p id="intro-objective"></p>
+        <div class="menu-actions">
+          <button id="intro-continue-btn">Commencer</button>
+        </div>
+      </section>
+
+      <!-- Pause Screen -->
+      <section id="pause-screen" class="panel">
+        <h2>Pause</h2>
+        <div class="pause-info">
+          <h3>Commandes rapides</h3>
+          <div class="command-grid">
+            <div class="command-item move">
+              <span class="command-key">🧭 Souris + ↑↓←→</span>
+              <span class="command-desc">Déplacement du vaisseau</span>
+            </div>
+            <div class="command-item fire">
+              <span class="command-key">🔫 Clic maintenu</span>
+              <span class="command-desc">Mode mitraillette (jauge jaune)</span>
+            </div>
+            <div class="command-item boost">
+              <span class="command-key">⚡ Espace maintenu</span>
+              <span class="command-desc">Nitro (jauge violette)</span>
+            </div>
+            <div class="command-item action">
+              <span class="command-key">🖱 Clic simple</span>
+              <span class="command-desc">Tir court</span>
+            </div>
+            <div class="command-item system">
+              <span class="command-key">⏯ P • 🔄 R • 🏠 H • 🧪 D • ESC</span>
+              <span class="command-desc">Pause/Reprendre, Relancer, Menu, Debug, Quitter</span>
+            </div>
+            <div class="command-item shock">
+              <span class="command-key">⚡️ Mode Eclair</span>
+              <span class="command-desc">Ramasse un eclair puis percute un ennemi vaisseau pour infliger de gros degats sans perdre de vie</span>
+            </div>
+          </div>
+        </div>
+        <div class="pause-actions">
+          <button id="resume-btn">▶ Reprendre</button>
+          <button id="restart-btn">🔄 Rejouer</button>
+          <button id="back-menu-btn">🏠 Menu Principal</button>
+        </div>
+      </section>
+
+      <section id="levelclear-screen" class="panel">
+        <h2 id="level-info">Niveau terminé</h2>
+        <p id="level-goal"></p>
+        <div style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; justify-content: center;">
+          <button id="next-level-btn">Niveau suivant</button>
+          <button id="restart-btn-level">Rejouer</button>
+          <button id="back-menu-btn-level">Menu</button>
+        </div>
+      </section>
+
+      <section id="victory-screen" class="panel">
+        <h2>Victoire</h2>
+        <p id="victory-score">Score final: 0</p>
+        <p id="victory-recap"></p>
+        <div style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; justify-content: center;">
+          <button id="restart-btn-victory">Rejouer</button>
+          <button id="back-menu-btn-victory">Menu</button>
+        </div>
+      </section>
+
+      <!-- Game Over Screen -->
+      <section id="gameover-screen" class="panel">
+        <h2>Game Over</h2>
+        <p id="final-score">Score: 0</p>
+        <p id="final-recap"></p>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <button id="restart-btn-gameover">Rejouer</button>
+          <button id="back-menu-btn-gameover">Menu</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scripts en ordre correct -->
+    <script src="lib/core/vehicules.js"></script>
+    <script src="src/core/config.js"></script>
+    <script src="src/core/behaviorManager.js"></script>
+    <script src="src/entities/obstacle.js"></script>
+    <script src="src/entities/coin.js"></script>
+    <script src="src/entities/medkitPickup.js"></script>
+    <script src="src/entities/shockPickup.js"></script>
+    <script src="src/entities/player.js"></script>
+    <script src="src/entities/enemy.js"></script>
+    <script src="src/entities/enemyProjectile.js"></script>
+    <script src="src/entities/missile.js"></script>
+    <script src="src/entities/explosion.js"></script>
+    <script src="src/systems/hud.js"></script>
+    <script src="src/systems/debug.js"></script>
+    <script src="src/systems/ui.js"></script>
+    <script src="src/systems/game.js"></script>
+    <script src="src/systems/sketch.js"></script>
+  </body>
+</html>
